@@ -1,11 +1,10 @@
 "use client";
 import { Plus } from "lucide-react";
 import { useState } from "react";
-import { useAtom, useAtomValue } from "jotai";
+import { useAtom } from "jotai";
 import { createDesignAtom, createTemplateAtom } from "@/app/store/design";
 import Modal from "./layout/modal";
 import toast from "react-hot-toast";
-import { loggedInUserAtom } from "@/app/store/user";
 
 export default function AddDesignIcon({
   template = false,
@@ -17,7 +16,6 @@ export default function AddDesignIcon({
   const [, createDesign] = useAtom(createDesignAtom);
   const [, createTemplate] = useAtom(createTemplateAtom);
   const [error, setError] = useState<string | null>(null);
-  const user = useAtomValue(loggedInUserAtom);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

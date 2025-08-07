@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { Home, Users, Settings, UserRoundPlus, UserCog } from "lucide-react";
+import { Home, Settings, UserRoundPlus } from "lucide-react";
 import { UserRoles } from "@/app/generated/prisma";
 
 const restrictedRoutes: Record<UserRoles, string[]> = {
