@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "public"."Design" ALTER COLUMN "height" SET DEFAULT 600,
+ALTER COLUMN "width" SET DEFAULT 800;

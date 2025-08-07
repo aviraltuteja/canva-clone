@@ -1,0 +1,73 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Design {
+  id          String    @id @default(cuid())
+  name        String
+  userId      String
+  height      Float     @default(600)
+  width       Float     @default(800)
+  backgroundColor String?  @default("#FFFFFF")
+  user        User      @relation("OwnedDesigns", fields: [userId], references: [id])
+  elements    Element[]
+  privacy     Privacy   @default(private)
+  sharedWith  User[]    @relation("SharedDesigns")
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model User {
+  id             String     @id @default(uuid())
+  email          String     @unique
+  name           String
+  password       String
+  role           UserRoles
+  createdAt      DateTime   @default(now())
+  ownedDesigns   Design[]   @relation("OwnedDesigns")
+  sharedDesigns  Design[]   @relation("SharedDesigns")
+}
+
+model Element {
+  id         String   @id @default(cuid())
+  designId   String
+  design     Design   @relation(fields: [designId], references: [id])
+  type       String
+  text       String?  
+  src        String?   
+  left       Float
+  top        Float
+  fontSize   Int?
+  fontFamily String?
+  fontWeight String? 
+  fontStyle  String?
+  scaleX     Float?
+  scaleY     Float?
+  radius    Float?
+  width     Float?
+  height    Float?
+  fill      String  @default("#d6d6d6")
+}
+
+enum UserRoles {
+  client
+  admin
+}
+
+enum Privacy {
+  private
+  shared
+  template
+  private_template
+}
