@@ -18,9 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${sans_serif.className}  antialiased`}>
-        {modal}
         <Toaster />
-        <nav>{/* <Navbar /> */}</nav> {children}
+        <nav>{/* <Navbar /> */}</nav> {modal}
+        {children}
       </body>
     </html>
   );
