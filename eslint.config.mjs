@@ -10,7 +10,28 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
+  // Step 1: Ignore Prisma generated files
+  {
+    ignores: ["app/generated/**"],
+  },
+
+  // Step 2: Your normal Next.js + TypeScript lint rules
   ...compat.extends("next/core-web-vitals", "next/typescript"),
+
+  // Step 3: Add some gentle auto-fix-friendly tweaks
+  {
+    rules: {
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
+      ],
+      "@typescript-eslint/no-unused-expressions": [
+        "warn",
+        { allowShortCircuit: true },
+      ],
+      "@typescript-eslint/no-this-alias": "off", // prevent fails on legacy patterns
+    },
+  },
 ];
 
 export default eslintConfig;

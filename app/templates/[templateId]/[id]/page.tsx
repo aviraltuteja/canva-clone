@@ -1,4 +1,3 @@
-import DesignWrapper from "@/app/components/design/design-wrapper";
 import TemplateWrapper from "@/app/components/design/template-wrapper";
 
 interface DesignPageProps {
