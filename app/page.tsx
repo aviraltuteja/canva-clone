@@ -1,5 +1,5 @@
 import React from "react";
-import { Pencil, Type, Square, Image, ArrowRight } from "lucide-react";
+import { Pencil, Type, Square, ArrowRight, Camera } from "lucide-react";
 
 const LandingPage: React.FC = () => {
   return (
@@ -35,7 +35,7 @@ const LandingPage: React.FC = () => {
             experience needed!
           </p>
           <a
-            href="/editor"
+            href="/signup"
             className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 text-lg flex items-center mx-auto w-fit">
             Start Designing Now <ArrowRight className="w-5 h-5 ml-2" />
           </a>
@@ -64,7 +64,7 @@ const LandingPage: React.FC = () => {
             </p>
           </div>
           <div className="text-center">
-            <Image className="w-12 h-12 mx-auto text-blue-500 mb-4" />
+            <Camera className="w-12 h-12 mx-auto text-blue-500 mb-4" />
             <h3 className="text-xl font-semibold text-gray-800 mb-2">
               Image Editing
             </h3>
